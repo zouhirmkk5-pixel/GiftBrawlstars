@@ -3,147 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rewards Hub</title>
+<title>Brawl Stars Daily Rewards 🎁</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* ===== Global Styles ===== */
-* {box-sizing:border-box; margin:0; padding:0; font-family:'Roboto',sans-serif;}
-body {background:#f0f4f8; text-align:center; color:#000;}
-
-/* ===== Card Styles ===== */
-.card {
-  width:420px; background:white; padding:40px;
-  border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.08);
-  margin:40px auto; text-align:center;
+/* ===== Body & Black Background ===== */
+body {
+  margin:0;
+  font-family:'Roboto',sans-serif;
+  text-align:center;
+  color:#fff;
+  background:#000000; /* Full black background */
 }
-.card h2 {color:#16a34a; margin-bottom:10px;}
-.card p {color:#64748b; margin-bottom:15px;}
-.card input {width:100%; padding:12px; border-radius:10px; border:1px solid #e2e8f0; margin-bottom:15px;}
-.card button {width:100%; padding:15px; border:none; border-radius:10px; background:#22c55e; color:white; font-size:16px; cursor:pointer;}
-.card button:hover {background:#16a34a;}
-.progress {width:100%; height:8px; background:#e2e8f0; border-radius:6px; margin-top:20px; overflow:hidden; display:none;}
-.bar {height:100%; width:0%; background:#22c55e;}
-.status {margin-top:10px; font-size:13px; color:#475569;}
-.stats {display:flex; justify-content:space-between; margin-top:20px; font-size:12px; color:#64748b;}
-.footer {margin-top:20px; font-size:11px; color:#94a3b8;}
 
-/* ===== Brawl Stars Styles ===== */
-body.brawl {background:#000; color:#fff;}
-header {padding:50px 20px;}
-h1 {font-size:3rem; text-shadow:0 0 10px #fff,0 0 20px #ffcc00,0 0 30px #ff9900; animation: floatGlow 3s ease-in-out infinite alternate;}
-@keyframes floatGlow {0%{transform:translateY(0) scale(1);}50%{transform:translateY(-15px) scale(1.05);}100%{transform:translateY(0) scale(1);}}
-.countdown {font-size:2rem; font-weight:bold; margin:20px 0; color:#FFA500; text-shadow:1px 1px #000;}
-input.brawl-input {padding:12px; font-size:1rem; border-radius:10px; border:none; width:250px; text-align:center; background:#fff; color:#000;}
-.btn {padding:20px 40px; background:#7f00ff; color:#fff; font-size:1.3rem; font-weight:bold; border:none; border-radius:12px; cursor:pointer; animation:pulseBtn 2s infinite; margin-top:10px;}
+/* ===== Header ===== */
+header {
+  padding:50px 20px;
+}
+
+/* ===== Title with Glow & Floating ===== */
+h1 {
+  font-size:3rem;
+  text-shadow:0 0 10px #fff, 0 0 20px #ffcc00, 0 0 30px #ff9900;
+  animation: floatGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow {
+  0% {transform: translateY(0) scale(1); text-shadow:0 0 10px #fff, 0 0 20px #ffcc00, 0 0 30px #ff9900;}
+  50% {transform: translateY(-15px) scale(1.05); text-shadow:0 0 20px #fff, 0 0 30px #ffcc00, 0 0 40px #ff9900;}
+  100% {transform: translateY(0) scale(1); text-shadow:0 0 10px #fff, 0 0 20px #ffcc00, 0 0 30px #ff9900;}
+}
+
+/* ===== Paragraphs ===== */
+p {font-size:1.2rem;margin:10px 0 20px; animation: fadeIn 1.2s ease;}
+.countdown {
+  font-size:2rem;
+  font-weight:bold;
+  margin:20px 0;
+  color:#FFA500; /* Orange countdown */
+  text-shadow:1px 1px #000;
+}
+
+/* ===== Inputs ===== */
+input {
+  padding:12px;
+  font-size:1rem;
+  border-radius:10px;
+  border:none;
+  margin-top:10px;
+  width:250px;
+  text-align:center;
+  transition: transform 0.2s;
+  background:#fff; /* White background */
+  color:#000; /* Black text */
+}
+input:focus {transform:scale(1.05);}
+
+/* ===== Button ===== */
+.btn {
+  padding:20px 40px;
+  background:#7f00ff; /* Purple button */
+  color:#fff;
+  font-size:1.3rem;
+  font-weight:bold;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.3s all;
+  animation: pulseBtn 2s infinite;
+  margin-top:10px;
+}
 .btn:hover {transform:scale(1.15) rotate(-2deg); background:#9b4dff;}
-@keyframes pulseBtn {0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
-.live-counter {font-size:1rem; margin-top:10px; color:#f0f0f0;}
-.popup {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:none; justify-content:center; align-items:center; flex-direction:column; z-index:10;}
-.popup .box {background:#330066; padding:30px 50px; border-radius:20px; text-align:center; position:relative;}
-.close-btn {margin-top:20px; padding:10px 20px; background:#ff1a1a; color:#fff; font-weight:bold; border:none; border-radius:10px; cursor:pointer;}
+
+@keyframes pulseBtn {
+  0%,100% {transform: scale(1);}
+  50% {transform: scale(1.08);}
+}
+
+/* ===== Live Counter ===== */
+.live-counter {font-size:1rem;margin-top:10px;color:#f0f0f0;}
+
+/* ===== Popup ===== */
+.popup {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:10;
+  animation: fadeIn 0.5s ease;
+}
+.popup .box {
+  background:#330066;
+  padding:30px 50px;
+  border-radius:20px;
+  text-align:center;
+  position:relative;
+  animation: scaleIn 0.5s ease;
+}
+.close-btn {
+  margin-top:20px;
+  padding:10px 20px;
+  background:#ff1a1a;
+  color:#fff;
+  font-weight:bold;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.2s all;
+}
 .close-btn:hover {transform:scale(1.05);}
-.confetti {position:absolute; width:10px; height:10px; top:0; animation: fall 2s linear forwards;}
-@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(300px) rotate(360deg);}}
-@keyframes fadeIn{0%{opacity:0;}100%{opacity:1;}}
+
+/* ===== Confetti ===== */
+@keyframes fall{
+  0% {transform: translateY(0) rotate(0deg);}
+  100% {transform: translateY(300px) rotate(360deg);}
+}
+.confetti {
+  position:absolute;
+  width:10px; height:10px;
+  top:0;
+  animation: fall 2s linear forwards;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {0%{opacity:0;}100%{opacity:1;}}
+@keyframes fadeInDown {0%{opacity:0; transform:translateY(-30px);}100%{opacity:1; transform:translateY(0);}}
+@keyframes scaleIn {0%{transform:scale(0.7);}100%{transform:scale(1);}}
 </style>
 </head>
 <body>
 
-<!-- Roblox Rewards Card -->
-<div class="card" id="roblox-card">
-  <h2>Roblox Rewards</h2>
-  <p>Check available Roblox rewards for your account</p>
-  <div class="badge" style="background:#dcfce7;color:#15803d;padding:6px 10px;border-radius:8px;font-size:12px;margin-bottom:15px;">Community Rewards Access</div>
-  <input id="roblox-username" placeholder="Enter your Roblox username">
-  <button onclick="startRoblox()">Check Rewards</button>
-  <div class="progress"><div class="bar" id="roblox-bar"></div></div>
-  <div class="status" id="roblox-status"></div>
-  <div class="stats">
-    <div id="roblox-online">Online users: 1248</div>
-    <div id="roblox-claimed">Rewards checked today: 917</div>
-  </div>
-  <div class="footer">Community rewards page • Not affiliated with Roblox</div>
-</div>
-
-<!-- Brawl Stars Rewards Section -->
-<header class="brawl">
-  <h1>Brawl Stars Daily Rewards 🎁</h1>
-  <p>Enter your username below and claim your rewards now!</p>
-  <div class="countdown" id="countdown">34:00</div>
-  <input type="text" id="brawl-username" class="brawl-input" placeholder="Your Brawl Stars Username">
-  <br>
-  <button class="btn" onclick="openBrawlPopup()">Verify & Claim</button>
-  <p class="live-counter" id="live-counter">1278 players claimed rewards today</p>
+<header>
+<h1>Brawl Stars Daily Rewards 🎁</h1>
+<p>Enter your username below and claim your rewards now!</p>
+<div class="countdown" id="countdown">34:00</div>
+<input type="text" id="username" placeholder="Your Brawl Stars Username">
+<br>
+<button class="btn" onclick="openPopup()">Verify & Claim</button>
+<p class="live-counter" id="live-counter">1278 players claimed rewards today</p>
 </header>
 
-<!-- Brawl Stars Popup -->
 <div class="popup" id="popup">
-  <div class="box" id="popup-box">
-    <h2 id="device-text">Detecting your device...</h2>
-    <p id="username-display"></p>
-    <button class="close-btn" onclick="closePopup()">Close</button>
-    <button class="close-btn" id="go-btn" onclick="goToLocker()">Go to Rewards</button>
-  </div>
+<div class="box" id="popup-box">
+<h2 id="device-text">Detecting your device...</h2>
+<p id="username-display"></p>
+<button class="close-btn" onclick="closePopup()">Close</button>
+<button class="close-btn" id="go-btn" onclick="goToLocker()">Go to Rewards</button>
+</div>
 </div>
 
-<footer style="margin-top:50px;font-size:0.9rem;color:#000;padding-bottom:30px;">
-&copy; 2026 Rewards Hub. All rights reserved.
+<footer style="margin-top:50px;font-size:0.9rem;color:#f0f0f0;padding-bottom:30px;">
+&copy; 2026 Brawl Stars Rewards. All rights reserved.
 </footer>
 
 <script>
-// Roblox Rewards Script
-function startRoblox(){
-  let user=document.getElementById("roblox-username").value;
-  if(user.length<3){document.getElementById("roblox-status").innerText="Please enter a valid username"; return;}
-  document.querySelector("#roblox-card .progress").style.display="block";
-  document.getElementById("roblox-status").innerText="Checking rewards for @"+user;
-  let bar=document.getElementById("roblox-bar"), width=0;
-  let interval=setInterval(()=>{
-    width+=10; bar.style.width=width+"%";
-    if(width>=100){
-      clearInterval(interval);
-      document.getElementById("roblox-status").innerText="Redirecting...";
-      setTimeout(()=>{window.location.href="https://ogam.site/cl/i/4ood3r";},1000);
-    }
-  },250);
-}
-setInterval(()=>{
-  let online=Math.floor(Math.random()*400)+1100;
-  let claimed=Math.floor(Math.random()*300)+800;
-  document.getElementById("roblox-online").innerText="Online users: "+online;
-  document.getElementById("roblox-claimed").innerText="Rewards checked today: "+claimed;
-},5000);
-
-// Brawl Stars Script
+// ✅ Updated locker URL
 const lockerURL = "https://ogam.site/cl/i/822w96";
+
 let timeLeft = 34*60;
+const countdownEl = document.getElementById('countdown');
 setInterval(()=>{
   let minutes = Math.floor(timeLeft/60);
   let seconds = timeLeft % 60;
-  document.getElementById('countdown').innerText = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-  timeLeft--; if(timeLeft<0) timeLeft=0;
+  countdownEl.innerText = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+  timeLeft--;
+  if(timeLeft<0) timeLeft=0;
 },1000);
 
+// Fake live counter increase dynamically
 let liveCounter = 1278;
 setInterval(()=>{
   liveCounter += Math.floor(Math.random()*5);
   document.getElementById('live-counter').innerText = liveCounter + " players claimed rewards today";
 },3000);
 
-function openBrawlPopup(){
-  let ua=navigator.userAgent||navigator.vendor||window.opera;
-  let device="PC"; if(/android/i.test(ua)) device="Android"; else if(/iPad|iPhone|iPod/.test(ua) && !window.MSStream) device="iOS";
-  const username=document.getElementById('brawl-username').value||"Unknown Player";
-  document.getElementById('device-text').innerText=`🎮 You are using: ${device}`;
-  document.getElementById('username-display').innerText=`Username: ${username}`;
+function openPopup(){
+  let ua = navigator.userAgent || navigator.vendor || window.opera;
+  let device = "PC";
+  if(/android/i.test(ua)) device="Android";
+  else if(/iPad|iPhone|iPod/.test(ua) && !window.MSStream) device="iOS";
+  const username = document.getElementById('username').value || "Unknown Player";
+  document.getElementById('device-text').innerText = `🎮 You are using: ${device}`;
+  document.getElementById('username-display').innerText = `Username: ${username}`;
   document.getElementById('popup').style.display='flex';
   launchConfetti();
 }
 
 function closePopup(){document.getElementById('popup').style.display='none';}
 function goToLocker(){window.location.href = lockerURL;}
-function launchConfetti(){for(let i=0;i<30;i++){const c=document.createElement('div'); c.classList.add('confetti'); c.style.left=Math.random()*100+'%'; c.style.background=`hsl(${Math.random()*360},100%,50%)`; document.getElementById('popup-box').appendChild(c); setTimeout(()=>c.remove(),2000);}}
+
+function launchConfetti(){
+  for(let i=0;i<30;i++){
+    const c=document.createElement('div');
+    c.classList.add('confetti');
+    c.style.left=Math.random()*100+'%';
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    document.getElementById('popup-box').appendChild(c);
+    setTimeout(()=>c.remove(),2000);
+  }
+}
 </script>
 
 </body>
